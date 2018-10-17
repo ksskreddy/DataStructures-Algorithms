@@ -10,10 +10,14 @@ struct matrix{
 ll a[3000][3000];
 int size;
 matrix(int sz){
-memset(a,0,sizeof(a));
 size=sz;
+for (int i=0; i<size; ++i)
+        for (int k=0; k<size; ++k)
+        	a[i][k]=0;
+        
+
 }
-matrix operator * (matrix b){
+matrix operator * (matrix & b){
     matrix c = matrix(b.size);
     for (int i=0; i<size; ++i)
         for (int k=0; k<size; ++k)
@@ -29,7 +33,7 @@ for(int i=0; i<sz; ++i)
 return z;
 }
  
-matrix modpow(matrix m,ll n){
+matrix modpow(matrix & m,ll n){
   if ( n == 0 )
     return unit(m.size);
   matrix half =modpow(m,n>>1);
